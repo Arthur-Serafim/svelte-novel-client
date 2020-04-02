@@ -31,6 +31,10 @@
     font-family: "Merriweather";
   }
 
+  .container {
+    background: #f5f6fc;
+  }
+
   .hide-overflow {
     white-space: nowrap;
     overflow: hidden;
@@ -44,6 +48,12 @@
     padding: 25px 300px;
   }
 
+  @media only screen and (max-width: 1700px) {
+    .featured-container {
+      padding: 15px 250px;
+    }
+  }
+
   .section-header {
     width: 100%;
     display: flex;
@@ -54,7 +64,14 @@
 
   .section-title {
     margin: 0;
-    font-size: 36px;
+    margin-top: 25px;
+    font-size: 32px;
+  }
+
+  @media only screen and (max-width: 1700px) {
+    .section-title {
+      font-size: 28px;
+    }
   }
 
   .section-link {
@@ -72,6 +89,12 @@
     grid-template-rows: 1fr;
     grid-template-areas: "featured display";
     grid-gap: 50px;
+  }
+
+  @media only screen and (max-width: 1700px) {
+    .weekly-container {
+      grid-template-columns: 200px 1fr;
+    }
   }
 
   .featured-novel {
@@ -111,6 +134,12 @@
     cursor: pointer;
   }
 
+  @media only screen and (max-width: 1700px) {
+    .featured-title {
+      font-size: 13px;
+    }
+  }
+
   .featured-title:hover {
     text-decoration: underline;
   }
@@ -122,6 +151,13 @@
     font-size: 12px;
     margin: 0;
     margin-bottom: 10px;
+  }
+
+  @media only screen and (max-width: 1700px) {
+    .featured-author {
+      font-size: 10px;
+      margin-bottom: 5px;
+    }
   }
 
   .featured-synopsis {
@@ -167,7 +203,7 @@
     outline: none;
     height: 30px;
     font-weight: bold;
-    margin-top: 15px;
+    align-self: flex-end;
     margin-bottom: 0;
     width: 100%;
     cursor: pointer;
@@ -210,7 +246,6 @@
 
   .list-image {
     width: 100%;
-    height: 270px;
     object-fit: cover;
     transition: all 0.3s;
   }
@@ -228,6 +263,27 @@
     margin-right: 25px;
   }
 
+  .list-container-align {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .list-container-loading {
+    width: 210px;
+    height: 379px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media only screen and (max-width: 1700px) {
+    .list-container-loading {
+      width: 170px;
+      height: 331px;
+    }
+  }
+
   .completed-container {
     box-sizing: border-box;
     padding: 0 300px;
@@ -236,12 +292,24 @@
     padding-bottom: 25px;
   }
 
+  @media only screen and (max-width: 1700px) {
+    .completed-container {
+      padding: 0 250px;
+    }
+  }
+
   .category-container {
     box-sizing: border-box;
     padding: 0 300px;
     background: #f5f6fc;
     height: 100%;
     padding-bottom: 25px;
+  }
+
+  @media only screen and (max-width: 1700px) {
+    .category-container {
+      padding: 0 250px;
+    }
   }
 
   .loading {
@@ -299,10 +367,7 @@
         </div>
         <div class="listing-container" style={`height: ${height}px`}>
           {#each Array(9) as _}
-            <div
-              class="list-container"
-              style="width: 210px; height: 379px; display: flex; align-items:
-              center; justify-content: center;">
+            <div class="list-container list-container-loading">
               <div class="loading">
                 <div />
                 <div />
@@ -343,13 +408,15 @@
         <div class="listing-container" style={`height: ${height}px`}>
           {#each data.Xianxia as novel}
             {#if novel.link !== data.Xianxia[random].link}
-              <div class="list-container">
-                <img
-                  class="list-image"
-                  src={novel.image}
-                  alt={`Image for novel ${novel.title}`} />
-                <h2 class="featured-title hide-overflow">{novel.title}</h2>
-                <h2 class="featured-author hide-overflow">{novel.author}</h2>
+              <div class="list-container list-container-align">
+                <div>
+                  <img
+                    class="list-image"
+                    src={novel.image}
+                    alt={`Image for novel ${novel.title}`} />
+                  <h2 class="featured-title hide-overflow">{novel.title}</h2>
+                  <h2 class="featured-author hide-overflow">{novel.author}</h2>
+                </div>
                 <button class="read-full">See More</button>
               </div>
             {/if}
@@ -373,7 +440,7 @@
   </section>
   <section class="category-container">
     <div class="section-header">
-      <h2 class="section-title">Categories</h2>
+      <h2 class="section-title">Discover Novels</h2>
     </div>
   </section>
 </div>

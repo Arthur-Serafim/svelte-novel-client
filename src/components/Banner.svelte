@@ -10,6 +10,13 @@
     justify-content: center;
     margin: 0;
   }
+
+  @media only screen and (max-width: 1500px) {
+    .banner {
+      font-size: 14px;
+      height: 30px;
+    }
+  }
 </style>
 
 <div class="banner">

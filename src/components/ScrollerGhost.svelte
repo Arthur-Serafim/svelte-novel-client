@@ -63,7 +63,6 @@
     flex-direction: column;
     justify-content: center;
     margin-right: 50px;
-    width: 135px;
   }
 
   .scroll-image {
@@ -74,6 +73,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  @media only screen and (max-width: 1700px) {
+    .scroll-image {
+      height: 180px;
+      width: 121px;
+    }
   }
 
   .loading {

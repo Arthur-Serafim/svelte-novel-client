@@ -8,6 +8,7 @@
 <style>
   :global(body) {
     padding: 0;
+    background: #f5f6fc;
   }
 </style>
 

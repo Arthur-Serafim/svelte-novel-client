@@ -63,7 +63,14 @@
     flex-direction: column;
     justify-content: center;
     margin-right: 50px;
+    width: min-content;
     width: 135px;
+  }
+
+  @media only screen and (max-width: 1700px) {
+    .scroll-item {
+      width: 121px;
+    }
   }
 
   .scroll-image {
@@ -73,6 +80,14 @@
     border-radius: 15px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  @media only screen and (max-width: 1700px) {
+    .scroll-image {
+      height: 180px;
+      width: 121px;
+    }
   }
 
   .scroll-image:hover {
@@ -83,6 +98,12 @@
     margin: 10px 0 5px 0;
     font-size: 16px;
     cursor: pointer;
+  }
+
+  @media only screen and (max-width: 1700px) {
+    .title {
+      font-size: 13px;
+    }
   }
 
   .title:hover {
