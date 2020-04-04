@@ -5,16 +5,22 @@
   import Banner from "../components/Banner.svelte";
   import Scroller from "../components/Scroller.svelte";
   import ScrollerGhost from "../components/ScrollerGhost.svelte";
+  import CategoryCard from "../components/CategoryCard.svelte";
 
   async function getFeatured() {
-    let response = await axios.get("http://localhost:3000/list/featured");
+    let response = await axios.get(
+      "https://complete-novel-api.herokuapp.com/list/featured"
+    );
     return response.data;
   }
 
   async function getCompletedNovels() {
-    let completed = await axios.post("http://localhost:3000/list/completed", {
-      page: 1
-    });
+    let completed = await axios.post(
+      "https://complete-novel-api.herokuapp.com/list/completed",
+      {
+        page: 1
+      }
+    );
 
     return completed.data;
   }
@@ -24,6 +30,13 @@
   let featured = getFeatured();
   let showSynopsis = false;
   let completedNovels = getCompletedNovels();
+  let category = [
+    { name: "Xianxia", color: "#B29DD9" },
+    { name: "Romantic", color: "#FE6B64" },
+    { name: "Historical", color: "#FFB347" },
+    { name: "Sci-Fi", color: "#77DD77" },
+    { name: "Game", color: "#779ECB" }
+  ];
 </script>
 
 <style lang="scss">
@@ -664,6 +677,12 @@
     }
   }
 
+  .category-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   .loading {
     display: inline-block;
     position: relative;
@@ -812,6 +831,11 @@
   <section class="category-container">
     <div class="section-header">
       <h2 class="section-title">Discover Novels</h2>
+    </div>
+    <div class="category-card-container">
+      {#each category as item}
+        <CategoryCard category={item.name} color={item.color} />
+      {/each}
     </div>
   </section>
 </div>
