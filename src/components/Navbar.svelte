@@ -230,9 +230,11 @@
 </style>
 
 <nav class="navigation">
-  <div class="navigation-item">
+  <div
+    class="navigation-item"
+    on:click={() => navigate('/', { replace: true })}>
     <i class="fas fa-compass navigation-icon" />
-    <span class="navigation-label">Browse</span>
+    <span class="navigation-label">Home</span>
   </div>
   <div class="navigation-item">
     <i class="fas fa-anchor navigation-icon" />

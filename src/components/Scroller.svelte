@@ -1,4 +1,5 @@
 <script>
+  import { navigate } from "svelte-routing";
   export let completedNovels;
   let scroller;
 
@@ -8,6 +9,10 @@
 
   function handleScrollRight() {
     scroller.scrollLeft += 185;
+  }
+
+  function handleNavigate(link) {
+    navigate(`/novel${link}`, { replace: false });
   }
 </script>
 
@@ -233,7 +238,7 @@
   </button>
   <div class={'scroll-container'} bind:this={scroller}>
     {#each completedNovels as novel}
-      <div class="scroll-item">
+      <div class="scroll-item" on:click={() => handleNavigate(novel.link)}>
         <img
           src={novel.image}
           alt={`Image for ${novel.title}`}

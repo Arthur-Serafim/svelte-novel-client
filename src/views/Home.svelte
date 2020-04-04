@@ -17,13 +17,18 @@
 
   async function getCompletedNovels() {
     let completed = await axios.post(
-      "https://complete-novel-api.herokuapp.com/list/completed",
+      "http://localhost:3000/list/completed",
       {
         page: 1
       }
     );
 
+    console.log(completed);
     return completed.data;
+  }
+
+  function handleNavigate(link) {
+    navigate(`/novel${link}`, { replace: false });
   }
 
   $: height = 0;
@@ -808,7 +813,11 @@
                   <h2 class="featured-title hide-overflow">{novel.title}</h2>
                   <h2 class="featured-author hide-overflow">{novel.author}</h2>
                 </div>
-                <button class="read-full">See More</button>
+                <button
+                  class="read-full"
+                  on:click={() => handleNavigate(novel.link)}>
+                  See More
+                </button>
               </div>
             {/if}
           {/each}
