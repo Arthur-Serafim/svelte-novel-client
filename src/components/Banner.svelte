@@ -17,6 +17,26 @@
       height: 30px;
     }
   }
+
+  @media only screen and (max-width: 1000px) {
+    .banner {
+      font-size: 10px;
+      height: 25px;
+    }
+  }
+
+  @media only screen and (max-width: 560px) {
+    .banner {
+      font-size: 8px;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .banner {
+      font-size: 7px;
+      height: 20px;
+    }
+  }
 </style>
 
 <div class="banner">

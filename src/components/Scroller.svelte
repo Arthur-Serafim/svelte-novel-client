@@ -33,6 +33,30 @@
     transition: all 0.3s;
   }
 
+  @media only screen and (max-width: 1300px) {
+    .arrow-icon {
+      font-size: 36px;
+    }
+  }
+
+  @media only screen and (max-width: 1100px) {
+    .arrow-icon {
+      font-size: 34px;
+    }
+  }
+
+  @media only screen and (max-width: 850px) {
+    .arrow-icon {
+      font-size: 30px;
+    }
+  }
+
+  @media only screen and (max-width: 655px) {
+    .arrow-icon {
+      display: none;
+    }
+  }
+
   .arrow-icon:hover {
     color: #1a4cff;
   }
@@ -69,7 +93,40 @@
 
   @media only screen and (max-width: 1700px) {
     .scroll-item {
-      width: 121px;
+      margin-right: 45px;
+    }
+  }
+
+  @media only screen and (max-width: 1500px) {
+    .scroll-item {
+      margin-right: 40px;
+      width: 109px;
+    }
+  }
+
+  @media only screen and (max-width: 1400px) {
+    .scroll-item {
+      margin-right: 35px;
+      width: 98px;
+    }
+  }
+
+  @media only screen and (max-width: 1300px) {
+    .scroll-item {
+      margin-right: 30px;
+      width: 88px;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .scroll-item {
+      width: 80px;
+    }
+  }
+
+  @media only screen and (max-width: 750px) {
+    .scroll-item {
+      width: 72px;
     }
   }
 
@@ -90,6 +147,41 @@
     }
   }
 
+  @media only screen and (max-width: 1500px) {
+    .scroll-image {
+      height: 162px;
+      width: 109px;
+    }
+  }
+
+  @media only screen and (max-width: 1400px) {
+    .scroll-image {
+      height: 146px;
+      width: 98px;
+    }
+  }
+
+  @media only screen and (max-width: 1300px) {
+    .scroll-image {
+      height: 131px;
+      width: 88px;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .scroll-image {
+      height: 118px;
+      width: 80px;
+    }
+  }
+
+  @media only screen and (max-width: 750px) {
+    .scroll-image {
+      height: 106px;
+      width: 72px;
+    }
+  }
+
   .scroll-image:hover {
     opacity: 0.8;
   }
@@ -103,6 +195,24 @@
   @media only screen and (max-width: 1700px) {
     .title {
       font-size: 13px;
+    }
+  }
+
+  @media only screen and (max-width: 1400px) {
+    .title {
+      font-size: 11px;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .title {
+      font-size: 9px;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .title {
+      font-size: 7px;
     }
   }
 

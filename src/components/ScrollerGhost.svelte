@@ -33,6 +33,30 @@
     transition: all 0.3s;
   }
 
+  @media only screen and (max-width: 1300px) {
+    .arrow-icon {
+      font-size: 36px;
+    }
+  }
+
+  @media only screen and (max-width: 1100px) {
+    .arrow-icon {
+      font-size: 34px;
+    }
+  }
+
+  @media only screen and (max-width: 850px) {
+    .arrow-icon {
+      font-size: 30px;
+    }
+  }
+
+  @media only screen and (max-width: 655px) {
+    .arrow-icon {
+      display: none;
+    }
+  }
+
   .arrow-icon:hover {
     color: #1a4cff;
   }
@@ -65,6 +89,24 @@
     margin-right: 50px;
   }
 
+  @media only screen and (max-width: 1000px) {
+    .scroll-item-ghost {
+      margin-right: 40px;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .scroll-item-ghost {
+      margin-right: 30px;
+    }
+  }
+
+  @media only screen and (max-width: 750px) {
+    .scroll-item-ghost {
+      margin-right: 25px;
+    }
+  }
+
   .scroll-image {
     height: 200px;
     width: 135px;
@@ -82,11 +124,58 @@
     }
   }
 
+  @media only screen and (max-width: 1500px) {
+    .scroll-image {
+      height: 162px;
+      width: 109px;
+    }
+  }
+
+  @media only screen and (max-width: 1400px) {
+    .scroll-image {
+      height: 146px;
+      width: 98px;
+    }
+  }
+
+  @media only screen and (max-width: 1300px) {
+    .scroll-image {
+      height: 131px;
+      width: 88px;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .scroll-image {
+      height: 118px;
+      width: 80px;
+    }
+  }
+
+  @media only screen and (max-width: 750px) {
+    .scroll-image {
+      height: 106px;
+      width: 72px;
+    }
+  }
+
   .loading {
     display: inline-block;
     position: relative;
     width: 80px;
     height: 80px;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .loading {
+      transform: scale(0.75);
+    }
+  }
+
+  @media only screen and (max-width: 750px) {
+    .loading {
+      transform: scale(0.5);
+    }
   }
 
   .loading div {
