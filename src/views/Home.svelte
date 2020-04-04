@@ -6,6 +6,7 @@
   import Scroller from "../components/Scroller.svelte";
   import ScrollerGhost from "../components/ScrollerGhost.svelte";
   import CategoryCard from "../components/CategoryCard.svelte";
+  import Footer from "../components/Footer.svelte";
 
   async function getFeatured() {
     let response = await axios.get(
@@ -838,4 +839,5 @@
       {/each}
     </div>
   </section>
+  <Footer />
 </div>
