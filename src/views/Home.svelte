@@ -9,19 +9,14 @@
   import Footer from "../components/Footer.svelte";
 
   async function getFeatured() {
-    let response = await axios.get(
-      "https://complete-novel-api.herokuapp.com/list/featured"
-    );
+    let response = await axios.get("http://localhost:3000/list/featured");
     return response.data;
   }
 
   async function getCompletedNovels() {
-    let completed = await axios.post(
-      "http://localhost:3000/list/completed",
-      {
-        page: 1
-      }
-    );
+    let completed = await axios.post("http://localhost:3000/list/completed", {
+      page: 1
+    });
 
     console.log(completed);
     return completed.data;
@@ -41,7 +36,8 @@
     { name: "Romantic", color: "#FE6B64" },
     { name: "Historical", color: "#FFB347" },
     { name: "Sci-Fi", color: "#77DD77" },
-    { name: "Game", color: "#779ECB" }
+    { name: "Game", color: "#779ECB" },
+    { name: "Fantasy", color: "#a8626a" }
   ];
 </script>
 
@@ -486,6 +482,7 @@
     width: 100%;
     object-fit: cover;
     transition: all 0.3s;
+    cursor: pointer;
   }
 
   .list-image:hover {
@@ -778,8 +775,11 @@
           <img
             src={data.Xianxia[random].image}
             alt={`${data.Xianxia[random].title} Image`}
-            class="hoverable-image featured-image" />
-          <h2 class="featured-title hide-overflow">
+            class="hoverable-image featured-image"
+            on:click={() => handleNavigate(data.Xianxia[random].link)} />
+          <h2
+            class="featured-title hide-overflow"
+            on:click={() => handleNavigate(data.Xianxia[random].link)}>
             {data.Xianxia[random].title}
           </h2>
           <h2 class="featured-author hide-overflow">
@@ -793,7 +793,11 @@
                   .trim() + '...'}
           </span>
           <div class="buttons">
-            <button class="read">Read</button>
+            <button
+              class="read"
+              on:click={() => handleNavigate(data.Xianxia[random].link)}>
+              Read
+            </button>
             <span
               class="show-more"
               on:click={() => (showSynopsis = !showSynopsis)}>
@@ -809,8 +813,13 @@
                   <img
                     class="list-image"
                     src={novel.image}
-                    alt={`Image for novel ${novel.title}`} />
-                  <h2 class="featured-title hide-overflow">{novel.title}</h2>
+                    alt={`Image for novel ${novel.title}`}
+                    on:click={() => handleNavigate(novel.link)} />
+                  <h2
+                    class="featured-title hide-overflow"
+                    on:click={() => handleNavigate(novel.link)}>
+                    {novel.title}
+                  </h2>
                   <h2 class="featured-author hide-overflow">{novel.author}</h2>
                 </div>
                 <button

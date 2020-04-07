@@ -20,6 +20,7 @@
 
     display: flex;
     align-items: center;
+    font-family: "Merriweather";
   }
 
   @media only screen and (max-width: 1700px) {
