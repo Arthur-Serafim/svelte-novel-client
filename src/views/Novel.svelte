@@ -1,6 +1,7 @@
 <script>
   import axios from "axios";
   import Navbar from "../components/Navbar.svelte";
+  import Footer from "../components/Footer.svelte";
   import { navigate } from "svelte-routing";
   export let name;
   let navbar;
@@ -48,7 +49,7 @@
     width: 100%;
     box-sizing: border-box;
     padding: 0 300px;
-    background: #f5f6fc;
+    background: #f2f2f2;
 
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
     display: flex;
@@ -436,7 +437,7 @@
   }
 
   .novel-loading {
-    background-color: #f5f6fc;
+    background-color: #f2f2f2;
     height: calc(100vh - 60px);
     display: flex;
     justify-content: center;
@@ -474,6 +475,13 @@
 
   .bookmark-button:hover {
     opacity: 0.8;
+  }
+
+  .chapter-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
   }
 
   .hide-overflow {
@@ -580,7 +588,12 @@
           <button class="bookmark-button">Bookmark</button>
         </div>
         {#await chapters}
-          loading
+          <div class="chapter-loading">
+            <div class="loading">
+              <div />
+              <div />
+            </div>
+          </div>
         {:then chapters}
           <div class="chapter-listage">
             {#each chapters as item}
@@ -598,4 +611,5 @@
       </div>
     </div>
   {/await}
+  <Footer />
 </div>

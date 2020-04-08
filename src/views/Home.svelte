@@ -47,7 +47,7 @@
   }
 
   .container {
-    background: #f5f6fc;
+    background: #f2f2f2;
   }
 
   .hide-overflow {
@@ -58,7 +58,7 @@
 
   .featured-container {
     height: 100%;
-    background: #f5f6fc;
+    background: #f2f2f2;
     box-sizing: border-box;
     padding: 0 300px;
   }
@@ -595,7 +595,7 @@
   .completed-container {
     box-sizing: border-box;
     padding: 0 300px;
-    background: #f5f6fc;
+    background: #f2f2f2;
     height: 100%;
     padding-bottom: 25px;
   }
@@ -639,7 +639,7 @@
   .category-container {
     box-sizing: border-box;
     padding: 0 300px;
-    background: #f5f6fc;
+    background: #f2f2f2;
     height: 100%;
     padding-bottom: 25px;
   }
