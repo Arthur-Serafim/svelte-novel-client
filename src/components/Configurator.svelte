@@ -144,7 +144,7 @@
     {#if open}
       <div
         class="side-nav"
-        style={`background: ${theme ? theme.background : ''}; color: ${theme ? theme.color : ''}`}
+        style={`background: ${theme ? theme.background : '#fff'}; color: ${theme ? theme.color : '#252525'}`}
         transition:fly={{ x: 500, duration: 500 }}
         bind:this={sideNav}>
         <div class="settings-label">Background</div>
