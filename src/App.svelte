@@ -10,6 +10,7 @@
 <style>
   :global(body) {
     padding: 0;
+    font-family: Montserrat;
   }
 </style>
 

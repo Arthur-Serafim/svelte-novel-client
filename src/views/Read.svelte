@@ -7,16 +7,15 @@
   let spacer;
   let readContainer;
   let textContainer;
+  let chapterContent;
   let theme = JSON.parse(localStorage.getItem("theme"));
+  let font = localStorage.getItem("font");
 
   async function getContent() {
-    console.log("run");
     let response = await axios.post("http://localhost:3000/chapter/content", {
       link: `/${name}/`,
       chapter: `${chapter}.html`
     });
-
-    console.log(response.data);
 
     return response.data;
   }
@@ -37,6 +36,7 @@
     display: flex;
     justify-content: center;
     box-sizing: border-box;
+    transition: all 0.3s;
   }
 
   .text-container {
@@ -46,11 +46,25 @@
     padding: 0 50px;
     box-sizing: border-box;
     background: white;
+    transition: all 0.3s;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .text-container {
+      padding: 0 40px;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    .text-container {
+      padding: 0 30px;
+    }
   }
 
   .chapter-container {
     height: 100%;
     width: 100%;
+    transition: all 0.3s;
   }
 
   .chapter-content {
@@ -59,7 +73,7 @@
   }
 
   .chapter-title {
-    font-size: 24px;
+    font-size: 16px;
   }
 
   .novel {
@@ -151,7 +165,7 @@
 
 <div class="container">
   {#await content}
-    <Configurator name={title} chapter="" />
+    <Configurator name={title} chapter="" link={name} />
     <div
       class="chapter-loading"
       style={`background: ${theme ? theme.foreground : ''}`}>
@@ -166,11 +180,12 @@
       chapter={data.title.split(title).join('')}
       {spacer}
       {readContainer}
-      {textContainer} />
+      {textContainer}
+      {chapterContent} />
     <div
       class="read-container"
       bind:this={readContainer}
-      style={`background: ${theme ? theme.foreground : ''}`}>
+      style={`background: ${theme ? theme.foreground : ''}; font-family: ${font ? font : ''}`}>
       <div
         class="text-container"
         bind:this={textContainer}
@@ -178,7 +193,12 @@
         <div class="chapter-container">
           <div class="novel">
             <h2 class="chapter-title">{data.title.split(title).join('')}</h2>
-            <div class="chapter-content">{data.content}</div>
+            <div
+              class="chapter-content"
+              bind:this={chapterContent}
+              style={`font-size: ${localStorage.size ? localStorage.size : ''}px`}>
+              {data.content}
+            </div>
             <hr />
           </div>
           <div class="chapters-container">

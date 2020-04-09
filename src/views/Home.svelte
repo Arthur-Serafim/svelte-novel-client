@@ -10,7 +10,8 @@
 
   async function getFeatured() {
     let response = await axios.get("http://localhost:3000/list/featured");
-    return response.data;
+    console.log(response.data.All[random]);
+    return response.data.All;
   }
 
   async function getCompletedNovels() {
@@ -18,7 +19,6 @@
       page: 1
     });
 
-    console.log(completed);
     return completed.data;
   }
 
@@ -773,29 +773,25 @@
       <div class="weekly-container">
         <div class="featured-novel" bind:clientHeight={height}>
           <img
-            src={data.Xianxia[random].image}
-            alt={`${data.Xianxia[random].title} Image`}
+            src={data[random].image}
+            alt={`${data[random].title} Image`}
             class="hoverable-image featured-image"
-            on:click={() => handleNavigate(data.Xianxia[random].link)} />
+            on:click={() => handleNavigate(data[random].link)} />
           <h2
             class="featured-title hide-overflow"
-            on:click={() => handleNavigate(data.Xianxia[random].link)}>
-            {data.Xianxia[random].title}
+            on:click={() => handleNavigate(data[random].link)}>
+            {data[random].title}
           </h2>
-          <h2 class="featured-author hide-overflow">
-            {data.Xianxia[random].author}
-          </h2>
+          <h2 class="featured-author hide-overflow">{data[random].author}</h2>
           <span class="featured-synopsis">
-            {showSynopsis ? data.Xianxia[random].synopsis.trim() : data.Xianxia[
-                  random
-                ].synopsis
+            {showSynopsis ? data[random].synopsis.trim() : data[random].synopsis
                   .substr(0, 175)
                   .trim() + '...'}
           </span>
           <div class="buttons">
             <button
               class="read"
-              on:click={() => handleNavigate(data.Xianxia[random].link)}>
+              on:click={() => handleNavigate(data[random].link)}>
               Read
             </button>
             <span
@@ -806,8 +802,8 @@
           </div>
         </div>
         <div class="listing-container" style={`height: ${height}px`}>
-          {#each data.Xianxia as novel}
-            {#if novel.link !== data.Xianxia[random].link}
+          {#each data as novel}
+            {#if novel.link !== data[random].link}
               <div class="list-container list-container-align">
                 <div>
                   <img

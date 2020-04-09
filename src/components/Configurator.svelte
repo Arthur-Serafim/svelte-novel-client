@@ -2,14 +2,18 @@
   import { navigate } from "svelte-routing";
   import { fly } from "svelte/transition";
   export let name;
+  export let link;
   export let chapter;
   export let spacer;
+  export let chapterContent;
   export let readContainer;
   export let textContainer;
   let navigationContainer;
   let sideNav;
+  let fontItem;
   let open = false;
   let theme = JSON.parse(localStorage.getItem("theme"));
+  let fontSize = localStorage.getItem("size") || 18;
 
   let themes = [
     {
@@ -28,6 +32,8 @@
     }
   ];
 
+  let fonts = ["Nunito Sans", "Merriweather", "Montserrat"];
+
   function handleThemeChange(theme) {
     localStorage.setItem("theme", JSON.stringify(theme));
     navigationContainer.style.background = theme.background;
@@ -38,6 +44,24 @@
     spacer.style.background = theme.foreground;
     textContainer.style.background = theme.background;
     textContainer.style.color = theme.color;
+    let item;
+
+    for (item of fontItem.children) {
+      item.style.background = theme.foreground;
+      item.style.color = theme.color;
+    }
+  }
+
+  function handleFontChange(font) {
+    localStorage.setItem("font", font);
+    textContainer.style.fontFamily = font;
+  }
+
+  function handleFont(size) {
+    let newSize = parseInt(fontSize) + size;
+    localStorage.setItem("size", newSize);
+    fontSize = newSize;
+    chapterContent.style.fontSize = `${fontSize}px`;
   }
 </script>
 
@@ -51,12 +75,14 @@
     padding: 0 15px;
     display: flex;
     align-items: center;
+    transition: all 0.3s;
   }
 
   .navigation-novel {
     font-weight: bold;
     font-size: 12px;
     cursor: pointer;
+    white-space: nowrap;
   }
 
   .navigation-novel:hover {
@@ -100,6 +126,7 @@
     height: 100vh;
     width: 100vw;
     border-left: 1px solid rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
 
     display: flex;
     flex-direction: column;
@@ -127,7 +154,56 @@
   }
 
   .settings-label {
-    margin-bottom: 25px;
+    margin: 25px 0;
+  }
+
+  .font {
+    width: max-content;
+    padding: 5px;
+    border: 1px solid #252525;
+    margin: 0 25px 25px 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #f2f2f2;
+  }
+
+  .font:hover {
+    opacity: 0.8;
+  }
+
+  .font-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .size-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .size-icon {
+    font-size: 18px;
+    margin: 0 15px;
+    cursor: pointer;
+  }
+
+  .size-icon:first-child {
+    margin-left: 0;
+  }
+
+  .size-icon:hover {
+    color: #1a4cff;
+  }
+
+  .font-size {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .hide-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 </style>
 
@@ -136,9 +212,11 @@
   bind:this={navigationContainer}
   style={`background: ${theme ? theme.background : ''}; color: ${theme ? theme.color : ''}`}>
   <i class="icon fas fa-home" on:click={() => navigate('/')} />
-  <span class="navigation-novel">{name}</span>
+  <span class="navigation-novel" on:click={() => navigate(`/novel/${link}`)}>
+    {name}
+  </span>
   <span class="bar">/</span>
-  <div class="navigation-chapter">{chapter}</div>
+  <div class="navigation-chapter hide-overflow">{chapter}</div>
   {#if chapter}
     <i class="icon fas fa-cog settings" on:click={() => (open = !open)} />
     {#if open}
@@ -152,9 +230,26 @@
           {#each themes as theme}
             <div
               class="theme"
-              style={`background: ${theme.display}; border-color: ${theme.color}`}
+              style={`background: ${theme ? theme.display : ''}; border-color: ${theme ? theme.color : ''}`}
               on:click={() => handleThemeChange(theme)} />
           {/each}
+        </div>
+        <div class="settings-label">Font</div>
+        <div class="font-container" bind:this={fontItem}>
+          {#each fonts as font}
+            <div
+              class="font"
+              style={`background: ${theme && theme.foreground}; border-color: ${theme && theme.color}`}
+              on:click={() => handleFontChange(font)}>
+              <p>{font}</p>
+            </div>
+          {/each}
+        </div>
+        <div class="settings-label">Size</div>
+        <div class="size-container">
+          <i class="size-icon fas fa-plus" on:click={() => handleFont(+1)} />
+          <span class="font-size">{fontSize}</span>
+          <i class="size-icon fas fa-minus" on:click={() => handleFont(-1)} />
         </div>
       </div>
     {/if}
