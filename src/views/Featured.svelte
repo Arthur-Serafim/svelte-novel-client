@@ -2,6 +2,7 @@
   import axios from "axios";
   import BASE_URL from "../BASE_URL.js";
   import Navbar from "../components/Navbar.svelte";
+  import Footer from "../components/Footer.svelte";
   import Scroller from "../components/Scroller.svelte";
   import ScrollerGhost from "../components/ScrollerGhost.svelte";
 
@@ -113,4 +114,5 @@
       {/each}
     {/await}
   </div>
+  <Footer />
 </div>

@@ -18,7 +18,6 @@
     let completed = await axios.post(`${BASE_URL}/list/completed`, {
       page: 1
     });
-
     return completed.data;
   }
 
@@ -835,7 +834,9 @@
   <section class="completed-container">
     <div class="section-header">
       <h2 class="section-title">Completed Novels</h2>
-      <span class="section-link">See More →</span>
+      <span class="section-link" on:click={() => navigate('/completed')}>
+        See More →
+      </span>
     </div>
     {#await completedNovels}
       <ScrollerGhost />

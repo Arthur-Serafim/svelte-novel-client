@@ -4,6 +4,7 @@
   import Novel from "./views/Novel.svelte";
   import Read from "./views/Read.svelte";
   import Featured from "./views/Featured.svelte";
+  import Completed from "./views/Completed.svelte";
 
   export let url = "";
 </script>
@@ -20,6 +21,7 @@
     <div>
       <Route path="/" component={Home} />
       <Route path="/featured" component={Featured} />
+      <Route path="/completed" component={Completed} />
       <Route path="/novel/:name" let:params>
         <Novel name={params.name} />
       </Route>
