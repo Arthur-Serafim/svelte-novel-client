@@ -7,15 +7,16 @@
   import ScrollerGhost from "../components/ScrollerGhost.svelte";
   import CategoryCard from "../components/CategoryCard.svelte";
   import Footer from "../components/Footer.svelte";
+  import BASE_URL from "../BASE_URL.js";
 
   async function getFeatured() {
-    let response = await axios.get("http://localhost:3000/list/featured");
+    let response = await axios.get(`${BASE_URL}/list/featured`);
     console.log(response.data.All[random]);
     return response.data.All;
   }
 
   async function getCompletedNovels() {
-    let completed = await axios.post("http://localhost:3000/list/completed", {
+    let completed = await axios.post(`${BASE_URL}/list/completed`, {
       page: 1
     });
 

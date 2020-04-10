@@ -1,5 +1,6 @@
 <script>
   import axios from "axios";
+  import BASE_URL from "../BASE_URL.js";
   import Configurator from "../components/Configurator.svelte";
   import Footer from "../components/Footer.svelte";
   export let name;
@@ -10,9 +11,9 @@
   let chapterContent;
   let theme = JSON.parse(localStorage.getItem("theme"));
   let font = localStorage.getItem("font");
-
+  localStorage.setItem(name, chapter);
   async function getContent() {
-    let response = await axios.post("http://localhost:3000/chapter/content", {
+    let response = await axios.post(`${BASE_URL}/chapter/content`, {
       link: `/${name}/`,
       chapter: `${chapter}.html`
     });
@@ -177,6 +178,7 @@
   {:then data}
     <Configurator
       name={title}
+      link={name}
       chapter={data.title.split(title).join('')}
       {spacer}
       {readContainer}
@@ -224,5 +226,7 @@
       class="spacer"
       bind:this={spacer}
       style={`background: ${theme ? theme.foreground : '#f2f2f2'}; height: 25px`} />
+  {:catch error}
+    {error}
   {/await}
 </div>

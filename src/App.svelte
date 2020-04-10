@@ -10,7 +10,7 @@
 <style>
   :global(body) {
     padding: 0;
-    font-family: Montserrat;
+    font-family: Merriweather;
   }
 </style>
 

@@ -3,13 +3,16 @@
   import Navbar from "../components/Navbar.svelte";
   import Footer from "../components/Footer.svelte";
   import { navigate } from "svelte-routing";
+  import BASE_URL from "../BASE_URL.js";
   export let name;
   let navbar;
+  let bookmark = localStorage.getItem(name) || false;
+  console.log(name);
 
   async function getNovel(path) {
     path = "/" + path + "/";
     try {
-      let response = await axios.post("http://localhost:3000/get/novel", {
+      let response = await axios.post(`${BASE_URL}/get/novel`, {
         link: path
       });
       return response.data;
@@ -22,7 +25,7 @@
   async function getChapter(path) {
     path = "/" + path + "/";
     try {
-      let response = await axios.post("http://localhost:3000/list/chapters", {
+      let response = await axios.post(`${BASE_URL}/list/chapters`, {
         link: path
       });
       return response.data;
@@ -453,6 +456,7 @@
     font-size: 16px;
     cursor: pointer;
     margin: 0;
+    padding: 5px 10px;
   }
 
   @media only screen and (max-width: 1100px) {
@@ -482,6 +486,12 @@
     align-items: center;
     justify-content: center;
     height: 400px;
+  }
+
+  .blocked {
+    cursor: not-allowed;
+    opacity: 0.8;
+    user-select: none;
   }
 
   .hide-overflow {
@@ -585,7 +595,13 @@
       <div class="chapter-content">
         <div class="chapter-section">
           <span class="chapter-section-title">Content</span>
-          <button class="bookmark-button">Bookmark</button>
+          {#if !bookmark}
+            <div class="bookmark-button blocked">Bookmark</div>
+          {:else}
+            <a class="bookmark-button" href={`/${name}/${bookmark}`}>
+              Bookmark
+            </a>
+          {/if}
         </div>
         {#await chapters}
           <div class="chapter-loading">
