@@ -3,6 +3,7 @@
   import Home from "./views/Home.svelte";
   import Novel from "./views/Novel.svelte";
   import Read from "./views/Read.svelte";
+  import Featured from "./views/Featured.svelte";
 
   export let url = "";
 </script>
@@ -18,6 +19,7 @@
   <Router {url}>
     <div>
       <Route path="/" component={Home} />
+      <Route path="/featured" component={Featured} />
       <Route path="/novel/:name" let:params>
         <Novel name={params.name} />
       </Route>

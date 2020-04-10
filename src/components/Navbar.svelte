@@ -237,7 +237,9 @@
     <i class="fas fa-compass navigation-icon" />
     <span class="navigation-label">Home</span>
   </div>
-  <div class="navigation-item">
+  <div
+    class="navigation-item"
+    on:click={() => navigate('/featured', { replace: true })}>
     <i class="fas fa-anchor navigation-icon" />
     <span class="navigation-label">Featured</span>
   </div>

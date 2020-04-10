@@ -11,7 +11,6 @@
 
   async function getFeatured() {
     let response = await axios.get(`${BASE_URL}/list/featured`);
-    console.log(response.data.All[random]);
     return response.data.All;
   }
 
@@ -839,9 +838,9 @@
       <span class="section-link">See More →</span>
     </div>
     {#await completedNovels}
-      <ScrollerGhost name="home-ghost" />
+      <ScrollerGhost />
     {:then completedNovels}
-      <Scroller name="home" {completedNovels} />
+      <Scroller {completedNovels} />
     {/await}
   </section>
   <section class="category-container">
