@@ -52,13 +52,13 @@
 
   @media only screen and (max-width: 600px) {
     .text-container {
-      padding: 0 40px;
+      padding: 0 25px;
     }
   }
 
   @media only screen and (max-width: 400px) {
     .text-container {
-      padding: 0 30px;
+      padding: 0 15px;
     }
   }
 
