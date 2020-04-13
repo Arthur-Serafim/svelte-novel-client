@@ -7,7 +7,6 @@
   import Completed from "./views/Completed.svelte";
   import Category from "./views/Category.svelte";
   import Search from "./views/Search.svelte";
-
   export let url = "";
 </script>
 
