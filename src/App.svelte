@@ -12,7 +12,7 @@
 
 <style>
   :global(body) {
-    padding: 0;
+    padding: 0 !important;
     font-family: Merriweather;
   }
 </style>
