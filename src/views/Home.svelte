@@ -747,7 +747,7 @@
   <section class="featured-container">
     <div class="section-header">
       <h2 class="section-title">Weekly Featured</h2>
-      <span class="section-link">See More →</span>
+      <a href="/featured" class="section-link">See More →</a>
     </div>
     {#await featured}
       <div class="weekly-container" bind:clientHeight={height}>

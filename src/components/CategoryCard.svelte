@@ -1,6 +1,7 @@
 <script>
   export let category = "Xianxia";
   export let color = "#FE6B64";
+  import { navigate } from "svelte-routing";
 </script>
 
 <style>
@@ -41,6 +42,9 @@
   }
 </style>
 
-<div class="category-card-widget" style={`background: ${color}`}>
+<div
+  class="category-card-widget"
+  style={`background: ${color}`}
+  on:click={() => navigate(`/category/${category}`)}>
   <span class="category-card-title">{category}</span>
 </div>
