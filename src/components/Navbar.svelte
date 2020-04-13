@@ -228,25 +228,20 @@
       transform: translateY(-2px) translateX(-5px);
     }
   }
-
-  .link {
-    color: inherit;
-    text-decoration: none;
-  }
 </style>
 
 <nav class="navigation">
-  <div class="navigation-item">
-    <a href="/" class="link">
-      <i class="fas fa-compass navigation-icon" />
-      <span class="navigation-label">Home</span>
-    </a>
+  <div
+    class="navigation-item"
+    on:click={() => navigate('/', { replace: true })}>
+    <i class="fas fa-compass navigation-icon" />
+    <span class="navigation-label">Home</span>
   </div>
-  <div class="navigation-item">
-    <a href="/featured" class="link">
-      <i class="fas fa-anchor navigation-icon" />
-      <span class="navigation-label">Featured</span>
-    </a>
+  <div
+    class="navigation-item"
+    on:click={() => navigate('/featured', { replace: true })}>
+    <i class="fas fa-anchor navigation-icon" />
+    <span class="navigation-label">Featured</span>
   </div>
   <form class="input-container" on:submit|preventDefault={handleSubmit}>
     <i class="fas fa-search input-icon" />

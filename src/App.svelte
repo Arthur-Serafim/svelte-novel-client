@@ -7,12 +7,13 @@
   import Completed from "./views/Completed.svelte";
   import Category from "./views/Category.svelte";
   import Search from "./views/Search.svelte";
+
   export let url = "";
 </script>
 
 <style>
   :global(body) {
-    padding: 0 !important;
+    padding: 0;
     font-family: Merriweather;
   }
 </style>

@@ -126,12 +126,76 @@
       margin: 10px 0;
     }
   }
+
+  .loading-container {
+    height: calc(100vh - 60px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2f2f2;
+  }
+
+  .loading {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .loading {
+      transform: scale(0.8);
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .loading {
+      transform: scale(0.5);
+      margin-left: -5px;
+      transform: scale(0.6);
+    }
+  }
+
+  .loading div {
+    position: absolute;
+    border: 4px solid #252525;
+    opacity: 1;
+    border-radius: 50%;
+    animation: loading 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+
+  .loading div:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+
+  @keyframes loading {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+  }
 </style>
 
 <div>
   <Navbar />
   {#await data}
-    loading
+    <div class="loading-container">
+      <div class="loading">
+        <div />
+        <div />
+      </div>
+    </div>
   {:then novels}
     <div class="novels-container">
       {#each novels as novel}
