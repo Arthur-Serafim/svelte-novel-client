@@ -1,6 +1,7 @@
 <script>
   import axios from "axios";
   import Navbar from "../components/Navbar.svelte";
+  import BASE_URL from "../BASE_URL.js";
   import { navigate } from "svelte-routing";
   export let category;
   let categories = [
@@ -16,7 +17,7 @@
 
   async function getCategory() {
     loaded = false;
-    let response = await axios.post("http://localhost:3000/list/category", {
+    let response = await axios.post(`${BASE_URL}/list/category`, {
       category: category.toLowerCase(),
       page: page
     });

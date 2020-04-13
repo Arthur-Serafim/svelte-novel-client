@@ -3,9 +3,10 @@
   import { navigate } from "svelte-routing";
   import Navbar from "../components/Navbar.svelte";
   export let phrase;
+  import BASE_URL from "../BASE_URL.js";
 
   async function getData() {
-    let response = await axios.post("http://localhost:3000/filter", {
+    let response = await axios.post(`${BASE_URL}/filter`, {
       novel: phrase
     });
     return response.data;
