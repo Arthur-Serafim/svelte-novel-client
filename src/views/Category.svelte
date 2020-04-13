@@ -38,7 +38,7 @@
 <style>
   .category-container {
     width: 100%;
-    height: 300px;
+    height: 200px;
     background-color: #f2f2f2;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
@@ -50,15 +50,70 @@
     color: #252525;
   }
 
+  @media only screen and (max-width: 1700px) {
+    .category-container {
+      padding: 0 250px;
+    }
+  }
+
+  @media only screen and (max-width: 1300px) {
+    .category-container {
+      padding: 0 200px;
+    }
+  }
+
+  @media only screen and (max-width: 1100px) {
+    .category-container {
+      padding: 0 150px;
+    }
+  }
+
+  @media only screen and (max-width: 850px) {
+    .category-container {
+      padding: 0 100px;
+    }
+  }
+
+  @media only screen and (max-width: 655px) {
+    .category-container {
+      padding: 0 50px;
+    }
+  }
+
+  @media only screen and (max-width: 630px) {
+    .category-container {
+      height: 150px;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .category-container {
+      padding: 0 20px;
+    }
+  }
+
+  .category-title {
+    font-size: 20px;
+  }
+
   .category-selector {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
+    flex-wrap: wrap;
   }
 
   .category-item {
     cursor: pointer;
     opacity: 0.5;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  @media only screen and (max-width: 630px) {
+    .category-item {
+      font-size: 12px;
+    }
   }
 
   .category-item:hover {
@@ -82,23 +137,97 @@
     flex-wrap: wrap;
   }
 
+  @media only screen and (max-width: 1700px) {
+    .category-list {
+      padding: 40px 250px;
+    }
+  }
+
+  @media only screen and (max-width: 1300px) {
+    .category-list {
+      padding: 30px 200px;
+    }
+  }
+
+  @media only screen and (max-width: 1100px) {
+    .category-list {
+      padding: 20px 150px;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .category-list {
+      padding: 20px 100px;
+    }
+  }
+
+  @media only screen and (max-width: 885px) {
+    .category-list {
+      padding: 20px 50px;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .category-list {
+      padding: 20px 20px;
+    }
+  }
+
   .novel-card {
-    width: 50%;
+    width: 45%;
     display: flex;
     height: 230px;
     margin-bottom: 50px;
   }
 
+  @media only screen and (max-width: 860px) {
+    .novel-card {
+      width: 100%;
+    }
+  }
+
   .novel-card-image {
-    height: 100%;
     width: 150px;
+    object-fit: cover;
     border-radius: 5px;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
     transition: all 0.3s;
   }
 
+  @media only screen and (max-width: 1200px) {
+    .novel-card-image {
+      width: 125px;
+    }
+
+    .novel-card-image-container {
+      width: 125px !important;
+      margin-right: 25px;
+    }
+
+    .novel-card {
+      height: 200px;
+      margin-bottom: 30px;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .novel-card-image {
+      width: 100px;
+    }
+
+    .novel-card-image-container {
+      width: 100px !important;
+      height: 140px;
+      margin-right: 15px;
+    }
+
+    .novel-card {
+      margin-bottom: 20px;
+      height: 140px;
+    }
+  }
+
   .novel-card-image-container {
-    height: 100%;
     width: 150px;
     border-radius: 5px;
     overflow: hidden;
@@ -112,8 +241,23 @@
   }
 
   .novel-card-info {
+    height: max-content;
     width: calc(100% - 180px);
-    margin: 0 15px;
+    margin-right: 15px;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .novel-card-info {
+      margin: 0 5px;
+      width: calc(100% - 160px);
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .novel-card-info {
+      margin: 0 5px;
+      width: calc(100% - 133px);
+    }
   }
 
   .novel-card-title {
@@ -125,6 +269,18 @@
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .novel-card-title {
+      font-size: 14px;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .novel-card-title {
+      font-size: 12px;
+    }
   }
 
   .novel-card-title:hover {
@@ -148,6 +304,19 @@
     white-space: pre-line;
     font-size: 14px;
     overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .novel-card-synopsis {
+      font-size: 12px;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .novel-card-synopsis {
+      font-size: 10px;
+    }
   }
 
   .load-more {
@@ -163,7 +332,7 @@
   }
 
   .loading-container {
-    height: 100px;
+    height: calc(100vh - 240px);
     width: 100%;
     display: flex;
     align-items: center;
@@ -185,14 +354,9 @@
 
   @media only screen and (max-width: 800px) {
     .loading {
-      transform: scale(0.6);
-    }
-  }
-
-  @media only screen and (max-width: 800px) {
-    .loading {
       transform: scale(0.5);
       margin-left: -5px;
+      transform: scale(0.6);
     }
   }
 
