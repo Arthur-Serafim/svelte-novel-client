@@ -1,5 +1,6 @@
 <script>
   import axios from "axios";
+  import _ from "lodash";
   import Navbar from "../components/Navbar.svelte";
   import BASE_URL from "../BASE_URL.js";
   import { navigate } from "svelte-routing";
@@ -14,15 +15,25 @@
   ];
   let page = 1;
   let loaded = false;
+  let loading = false;
 
-  async function getCategory() {
+  async function getCategory(pageNumber) {
     loaded = false;
     let response = await axios.post(`${BASE_URL}/list/category`, {
       category: category.toLowerCase(),
-      page: page
+      page: pageNumber
     });
     accumulator = response.data;
     loaded = true;
+    return response.data;
+  }
+
+  async function getMore(pageNumber) {
+    let response = await axios.post(`${BASE_URL}/list/category`, {
+      category: category.toLowerCase(),
+      page: pageNumber
+    });
+    accumulator = [...accumulator, ...response.data];
     return response.data;
   }
 
@@ -33,7 +44,16 @@
     getCategory();
   }
 
-  let starter = getCategory();
+  let starter = getCategory(page);
+
+  async function handleLoad() {
+    loading = true;
+    let data = await getMore(page + 1);
+    page += 1;
+    accumulator = _.uniq([...accumulator, ...data], "link");
+
+    loading = false;
+  }
 </script>
 
 <style>
@@ -244,7 +264,7 @@
   .novel-card-info {
     height: max-content;
     width: calc(100% - 180px);
-    margin-right: 15px;
+    margin-left: 15px;
   }
 
   @media only screen and (max-width: 1200px) {
@@ -389,6 +409,64 @@
       opacity: 0;
     }
   }
+
+  .box {
+    width: 135px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 0.3s;
+    overflow: hidden;
+    position: relative;
+    background: #f2f2f2;
+  }
+
+  @media only screen and (max-width: 1700px) {
+    .box {
+      height: 180px;
+      width: 121px;
+    }
+  }
+
+  @media only screen and (max-width: 1500px) {
+    .box {
+      height: 162px;
+      width: 109px;
+    }
+  }
+
+  @media only screen and (max-width: 1400px) {
+    .box {
+      height: 146px;
+      width: 98px;
+    }
+  }
+
+  @media only screen and (max-width: 1300px) {
+    .box {
+      height: 131px;
+      width: 88px;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .box {
+      height: 118px;
+      width: 80px;
+    }
+  }
+
+  @media only screen and (max-width: 750px) {
+    .box {
+      height: 106px;
+      width: 72px;
+    }
+  }
 </style>
 
 <div>
@@ -431,11 +509,21 @@
                 {novel.title}
               </h2>
               <p class="novel-card-synopsis">
-                {novel.synopsis.substr(0, 200).trim() + '...'}
+                {novel.synopsis.substr(0, 150).trim() + '...'}
               </p>
             </div>
           </div>
         {/each}
+        <div class="box" on:click={handleLoad}>
+          {#if loading}
+            <div class="loading">
+              <div />
+              <div />
+            </div>
+          {:else}
+            <i class="fas fa-plus plus-icon" />
+          {/if}
+        </div>
       {:else}
         <div class="loading-container">
           <div class="loading">

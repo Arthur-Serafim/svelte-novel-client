@@ -4,15 +4,27 @@
   import Navbar from "../components/Navbar.svelte";
   export let phrase;
   import BASE_URL from "../BASE_URL.js";
+  let test = phrase;
+
+  let accumulator = [];
+  let loaded = false;
 
   async function getData() {
+    loaded = false;
     let response = await axios.post(`${BASE_URL}/filter`, {
       novel: phrase
     });
+    test = phrase;
+    loaded = true;
+    accumulator = response.data;
     return response.data;
   }
 
-  let data = getData();
+  getData();
+
+  $: if (phrase !== test) {
+    getData();
+  }
 </script>
 
 <style>
@@ -189,16 +201,16 @@
 
 <div>
   <Navbar />
-  {#await data}
+  {#if !loaded}
     <div class="loading-container">
       <div class="loading">
         <div />
         <div />
       </div>
     </div>
-  {:then novels}
+  {:else}
     <div class="novels-container">
-      {#each novels as novel}
+      {#each accumulator as novel}
         <div class="novel-item">
           <div class="novel-influence">{novel.relevance}</div>
           <div
@@ -211,5 +223,5 @@
         <hr class="spacer" />
       {/each}
     </div>
-  {/await}
+  {/if}
 </div>

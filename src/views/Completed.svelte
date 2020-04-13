@@ -24,8 +24,7 @@
     loading = true;
     let data = await getCompletedNovels(page + 1);
     page += 1;
-    accumulator = [...accumulator, ...data];
-    accumulator = _.uniq(accumulator, "link");
+    accumulator = _.uniq([...accumulator, ...data], "link");
 
     loading = false;
   }
