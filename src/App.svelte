@@ -6,6 +6,7 @@
   import Featured from "./views/Featured.svelte";
   import Completed from "./views/Completed.svelte";
   import Category from "./views/Category.svelte";
+  import Search from "./views/Search.svelte";
 
   export let url = "";
 </script>
@@ -23,6 +24,9 @@
       <Route path="/" component={Home} />
       <Route path="/featured" component={Featured} />
       <Route path="/completed" component={Completed} />
+      <Route path="/search/:phrase" let:params>
+        <Search phrase={params.phrase} />
+      </Route>
       <Route path="/category/:category" let:params>
         <Category category={params.category} />
       </Route>
