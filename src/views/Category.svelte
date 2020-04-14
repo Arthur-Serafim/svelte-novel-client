@@ -28,6 +28,7 @@
         .toLowerCase(),
       page: 1
     });
+
     accumulator = response.data;
     loaded = true;
     return response.data;
@@ -36,7 +37,10 @@
   async function getMore(pageNumber) {
     loading = true;
     let response = await axios.post(`${BASE_URL}/list/category`, {
-      category: category.toLowerCase(),
+      category: category
+        .split("-")
+        .join("")
+        .toLowerCase(),
       page: pageNumber
     });
     accumulator = _.uniq([...accumulator, ...response.data], "link");
