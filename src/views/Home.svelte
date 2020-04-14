@@ -34,7 +34,7 @@
     { name: "Xianxia", color: "#B29DD9" },
     { name: "Romantic", color: "#FE6B64" },
     { name: "Historical", color: "#FFB347" },
-    { name: "Sci-Fi", color: "#77DD77" },
+    { name: "Sci-fi", color: "#77DD77" },
     { name: "Game", color: "#779ECB" },
     { name: "Fantasy", color: "#a8626a" }
   ];

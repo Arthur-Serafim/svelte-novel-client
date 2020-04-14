@@ -5,6 +5,7 @@
   import BASE_URL from "../BASE_URL.js";
   import { navigate } from "svelte-routing";
   export let category;
+  let accumulator = [];
   let categories = [
     "Xianxia",
     "Romantic",
@@ -16,12 +17,16 @@
   let page = 1;
   let loaded = false;
   let loading = false;
+  let test = category;
 
-  async function getCategory(pageNumber) {
+  async function getCategory() {
     loaded = false;
     let response = await axios.post(`${BASE_URL}/list/category`, {
-      category: category.toLowerCase(),
-      page: pageNumber
+      category: category
+        .split("-")
+        .join("")
+        .toLowerCase(),
+      page: 1
     });
     accumulator = response.data;
     loaded = true;
@@ -29,31 +34,27 @@
   }
 
   async function getMore(pageNumber) {
+    loading = true;
     let response = await axios.post(`${BASE_URL}/list/category`, {
       category: category.toLowerCase(),
       page: pageNumber
     });
-    accumulator = [...accumulator, ...response.data];
+    accumulator = _.uniq([...accumulator, ...response.data], "link");
+    loading = false;
+    page += 1;
     return response.data;
   }
 
-  $: accumulator = [];
+  $: if (category !== test) {
+    getCategory();
+  }
 
   function handleNavigate(item) {
     navigate(`/category/${item}`, { replace: true });
     getCategory();
   }
 
-  let starter = getCategory(page);
-
-  async function handleLoad() {
-    loading = true;
-    let data = await getMore(page + 1);
-    page += 1;
-    accumulator = _.uniq([...accumulator, ...data], "link");
-
-    loading = false;
-  }
+  let starter = getCategory();
 </script>
 
 <style>
@@ -514,7 +515,7 @@
             </div>
           </div>
         {/each}
-        <div class="box" on:click={handleLoad}>
+        <div class="box" on:click={() => getMore(page + 1)}>
           {#if loading}
             <div class="loading">
               <div />
