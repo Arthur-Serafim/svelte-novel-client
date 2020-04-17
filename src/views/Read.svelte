@@ -48,6 +48,7 @@
     box-sizing: border-box;
     background: white;
     transition: all 0.3s;
+    overflow: hidden;
   }
 
   @media only screen and (max-width: 600px) {
