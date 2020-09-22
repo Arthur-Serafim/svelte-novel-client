@@ -20,7 +20,7 @@
     justify-content: center;
     z-index: 1000000;
     box-sizing: border-box;
-    padding: 0 200px;
+    padding: 0 50px;
     overflow: hidden;
     user-select: none;
   }
