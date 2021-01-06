@@ -18,7 +18,7 @@
     "dev": "webpack-dev-server --content-base public --history-api-fallback"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "lodash": "^4.17.15",
     "svelte-routing": "^1.4.2"
   }
